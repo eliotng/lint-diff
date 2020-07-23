@@ -145,4 +145,4 @@ const run = (commitRange = 'HEAD') => Promise.resolve(commitRange)
   .then(applyLinter)
   .then(reportResults)
 
-export default run
+export default run2

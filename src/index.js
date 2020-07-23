@@ -13,4 +13,4 @@ const cli = meow(`
 
 console.log('updated');
 
-//run(cli.input[0])
+run(cli.input[0])
