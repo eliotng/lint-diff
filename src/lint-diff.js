@@ -32,7 +32,6 @@ const linter = new CLIEngine()
 const formatter = linter.getFormatter()
 
 const getChangedFiles = pipeP(
-  console.log('getChangedFiles'),
   commitRange => exec('git', ['diff', commitRange, '--name-only', '--diff-filter=ACM']),
   prop('stdout'),
   split('\n'),
@@ -58,8 +57,13 @@ const lintChangedLines = pipe(
 
 const filterLinterMessages = changedFileLineMap => (linterOutput) => {
   const filterMessagesByFile = (result) => {
-    console.log('test');
+    var fs = require('fs');
 
+    fs.writeFile('mynewfile3.txt', 'Hello content!', function (err) {
+      if (err) throw err;
+      console.log('Saved!');
+    });
+    
     const fileLineMap = find(propEq('filePath', result.filePath), changedFileLineMap)
     const changedLines = prop('changedLines', fileLineMap)
 
