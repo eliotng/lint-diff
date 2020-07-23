@@ -41,7 +41,8 @@ const getChangedFiles = pipeP(
 
 const getDiff = curry((commitRange, filename) =>
   exec('git', ['diff', commitRange, filename])
-    .then(prop('stdout')))
+    //.then(prop('stdout'))
+    )
 
 const getChangedFileLineMap = curry((commitRange, filePath) => pipeP(
   getDiff(commitRange),
@@ -63,7 +64,7 @@ const filterLinterMessages = changedFileLineMap => (linterOutput) => {
       if (err) throw err;
       console.log('Saved!');
     });
-    
+
     const fileLineMap = find(propEq('filePath', result.filePath), changedFileLineMap)
     const changedLines = prop('changedLines', fileLineMap)
 
