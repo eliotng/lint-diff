@@ -11,4 +11,6 @@ const cli = meow(`
     $ lint-diff master..my-branch
 `)
 
-run(cli.input[0])
+console.log('updated');
+
+//run(cli.input[0])
